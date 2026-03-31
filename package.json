@@ -1,0 +1,12 @@
+{
+  "name": "vmaas-as-service",
+  "private": true,
+  "scripts": {
+    "demo": "npm run dev -w @vmaas-as-service/demo",
+    "standalone": "npm run dev -w @vmaas-as-service/standalone"
+  },
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ]
+}
