@@ -1,0 +1,139 @@
+/* Let PatternFly base.css own typography; keep layout full-viewport */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+#root {
+  min-height: 0;
+}
+
+body {
+  margin: 0;
+}
+
+/* Standalone landing: full width, no PatternFly page chrome / sidebar gutter */
+.osac-landing {
+  margin-inline: 0;
+  max-width: none;
+}
+
+/* App shell: slight horizontal inset so nav hover/selected backgrounds sit off the text and edges */
+/* Masthead role MenuToggle: extra horizontal padding so hover/expanded background feels less tight */
+/* Tenant admin + tenant user: Apex wordmark — centered with hamburger, same max height as PF logo slot */
+.pf-v6-c-masthead__main .pf-v6-c-masthead__logo.osac-apex-masthead-logo {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  max-width: min(100%, 22rem);
+  max-height: var(--pf-v6-c-masthead__logo--MaxHeight);
+  height: auto;
+}
+
+.pf-v6-c-masthead__main .pf-v6-c-masthead__logo.osac-apex-masthead-logo .pf-v6-c-masthead__brand {
+  display: flex;
+  align-items: center;
+  align-self: auto;
+  line-height: 0;
+  padding-block-end: 0;
+}
+
+.pf-v6-c-masthead__main .pf-v6-c-masthead__logo.osac-apex-masthead-logo > * {
+  max-height: var(--pf-v6-c-masthead__logo--MaxHeight);
+}
+
+button.osac-masthead-role-toggle.pf-v6-c-menu-toggle.pf-m-plain.pf-m-small {
+  --pf-v6-c-menu-toggle--m-plain--m-small--PaddingInlineStart: calc(
+    var(--pf-t--global--spacer--action--horizontal--plain--compact) +
+      var(--pf-t--global--spacer--sm)
+  );
+  --pf-v6-c-menu-toggle--m-plain--m-small--PaddingInlineEnd: calc(
+    var(--pf-t--global--spacer--action--horizontal--plain--compact) +
+      var(--pf-t--global--spacer--sm)
+  );
+}
+
+.osac-app-shell-nav.pf-v6-c-nav {
+  --pf-v6-c-nav--PaddingInlineStart: var(--pf-t--global--spacer--xs);
+  --pf-v6-c-nav--PaddingInlineEnd: var(--pf-t--global--spacer--xs);
+  --pf-v6-c-nav__link--PaddingInlineStart: calc(
+    var(--pf-t--global--spacer--md) + var(--pf-t--global--spacer--xs)
+  );
+  --pf-v6-c-nav__link--PaddingInlineEnd: calc(
+    var(--pf-t--global--spacer--md) + var(--pf-t--global--spacer--xs)
+  );
+  --pf-v6-c-nav__toggle--PaddingInlineStart: calc(
+    var(--pf-t--global--spacer--sm) + var(--pf-t--global--spacer--xs)
+  );
+  --pf-v6-c-nav__toggle--PaddingInlineEnd: calc(
+    var(--pf-t--global--spacer--sm) + var(--pf-t--global--spacer--xs)
+  );
+}
+
+/* Dashboard Welcome: fixed vertical footprint when switching roles (no layout jump) */
+.osac-dashboard-welcome__header {
+  margin-bottom: var(--pf-t--global--spacer--md);
+}
+
+/* Primary button sits flush under intro; min-height keeps admin/provider shells aligned with tenant user */
+.osac-dashboard-welcome__cta {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 0;
+  min-height: calc(
+    var(--pf-t--global--spacer--control--vertical--default) * 2 +
+      var(--pf-t--global--font--line-height--body) *
+      var(--pf-t--global--font--size--body--default)
+  );
+}
+
+/* No min-height here: a tall min-height on the <p> left empty space below the text before the CTA. */
+.osac-dashboard-welcome__intro {
+  margin-block-end: 0;
+}
+
+/* Main canvas: tiny extra horizontal padding for all role shells */
+.osac-page-main-section.pf-v6-c-page__main-section {
+  --pf-v6-c-page__main-section--PaddingInlineStart: calc(
+    var(--pf-t--global--spacer--lg) + var(--pf-t--global--spacer--xs)
+  );
+  --pf-v6-c-page__main-section--PaddingInlineEnd: calc(
+    var(--pf-t--global--spacer--lg) + var(--pf-t--global--spacer--xs)
+  );
+}
+
+/* Softer page dividers: blend borders toward surfaces so chrome is less loud */
+.pf-v6-c-page {
+  --pf-v6-c-page__sidebar--BorderInlineEndWidth: var(
+    --pf-t--global--border--width--regular
+  );
+  --pf-v6-c-page__sidebar--BorderInlineEndColor: color-mix(
+    in srgb,
+    var(--pf-t--global--border--color--default) 42%,
+    var(--pf-t--global--background--color--secondary--default)
+  );
+  --pf-v6-c-page__sidebar--BoxShadow: none;
+  --pf-v6-c-page__main-container--BorderColor: color-mix(
+    in srgb,
+    var(--pf-t--global--border--color--default) 38%,
+    var(--pf-t--global--background--color--primary--default)
+  );
+}
+
+.pf-v6-c-sidebar {
+  --pf-v6-c-sidebar--BorderColor--base: color-mix(
+    in srgb,
+    var(--pf-t--global--border--color--default) 42%,
+    var(--pf-t--global--background--color--primary--default)
+  );
+}
+
+/* VM templates: categories column slightly under primary nav width */
+@media (min-width: 48rem) {
+  .catalog-vm-templates-sidebar.pf-v6-c-sidebar {
+    --pf-v6-c-sidebar__panel--md--FlexBasis: calc(
+      var(--pf-v6-c-page__sidebar--Width, 18.125rem) - 3.25rem
+    );
+  }
+}
