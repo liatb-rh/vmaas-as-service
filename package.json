@@ -1,12 +1,10 @@
 {
   "name": "vmaas-as-service",
   "private": true,
+  "description": "Docs and UX prototype; Node dependencies live in the ux/ workspace (Storybook).",
+  "workspaces": ["ux"],
   "scripts": {
-    "demo": "npm run dev -w @vmaas-as-service/demo",
-    "standalone": "npm run dev -w @vmaas-as-service/standalone"
-  },
-  "workspaces": [
-    "apps/*",
-    "libs/*"
-  ]
+    "storybook": "npm run storybook -w vmaas-as-service-ux",
+    "build-storybook": "npm run build-storybook -w vmaas-as-service-ux"
+  }
 }

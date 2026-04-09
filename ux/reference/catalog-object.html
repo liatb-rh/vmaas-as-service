@@ -1,0 +1,37 @@
+<!--
+  Mirror of agents/reference/catalog-object.html — catalog tile anatomy for VMaaS UX.
+  Template catalog Storybook screen (Summit demo → 05) maps this structure to
+  PatternFly Gallery + Card in summitPages.tsx (TemplatesListPage).
+-->
+<article
+  class="ux-ref-catalog-tile"
+  aria-labelledby="ux-ref-catalog-item-title"
+  data-ux-ref="catalog-object"
+>
+  <header class="ux-ref-catalog-tile__header">
+    <div class="ux-ref-catalog-tile__icon-wrap" aria-hidden="true">
+      <img class="ux-ref-catalog-tile__icon" src="" alt="" width="48" height="48" />
+    </div>
+    <div class="ux-ref-catalog-tile__headings">
+      <h3 id="ux-ref-catalog-item-title" class="ux-ref-catalog-tile__title">
+        Catalog item name
+      </h3>
+      <p class="ux-ref-catalog-tile__provider">Provided by Vendor or Organization</p>
+    </div>
+  </header>
+
+  <p class="ux-ref-catalog-tile__description">
+    One or two lines describing what this catalog object does and when to choose it.
+    Keep copy concise; link to details for long text.
+  </p>
+
+  <ul class="ux-ref-catalog-tile__tags" aria-label="Tags">
+    <li><span class="ux-ref-catalog-tile__tag">Tag one</span></li>
+    <li><span class="ux-ref-catalog-tile__tag">Tag two</span></li>
+  </ul>
+
+  <footer class="ux-ref-catalog-tile__footer">
+    <a class="ux-ref-catalog-tile__cta" href="#">View details</a>
+    <button type="button" class="ux-ref-catalog-tile__action-secondary">Quick create</button>
+  </footer>
+</article>
