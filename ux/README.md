@@ -30,7 +30,23 @@ Static build:
 npm run build-storybook
 ```
 
-Output: `ux/storybook-static/` (add to `.gitignore` if you version this folder elsewhere).
+Output: `ux/storybook-static/` (ignored via `ux/.gitignore`).
+
+### GitHub Pages (automated)
+
+The repo includes **`.github/workflows/deploy-storybook.yml`**, which builds Storybook on every push to **`main`** and publishes it with the correct asset base path (`/<repository-name>/`).
+
+1. Push this workflow to GitHub (repository root must be this `vmaas-as-service` tree, not a parent monorepo folder, unless you move the workflow accordingly).
+2. In the GitHub repo: **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
+3. Open the **Actions** tab, confirm **Deploy Storybook to GitHub Pages** succeeds; the live URL is **`https://<owner>.github.io/<repo>/`**.
+
+To mimic CI locally (optional):
+
+```bash
+STORYBOOK_BASE_PATH=/<your-repo-name>/ npm run build-storybook
+```
+
+Use your real repository name in place of `<your-repo-name>` (same string GitHub uses in the path after `github.io`).
 
 ## Happy path: Summit demo (primary success path)
 

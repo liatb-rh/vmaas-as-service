@@ -1,0 +1,54 @@
+# Publishes the ux/ Storybook static build to GitHub Pages.
+# Prerequisite: Repo Settings → Pages → Build and deployment → Source: GitHub Actions.
+#
+# Assumes this vmaas-as-service folder is the GitHub repository root (not a subfolder of a larger monorepo).
+
+name: Deploy Storybook to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-storybook
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook
+        env:
+          STORYBOOK_BASE_PATH: /${{ github.event.repository.name }}/
+        run: npm run build-storybook
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ux/storybook-static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
